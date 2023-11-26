@@ -7,19 +7,49 @@
 
 import Foundation
 
+/*
+ NetworkDataFetcherProtocol - модуль нижнего уровня для DataFetcherServiceProtocol
+ NetworkDataFetcherProtocol - модуль высшего уровня для NetworkServiceProtocol
+ */
+
 protocol NetworkDataFetcherProtocol {
-    // тут уже удет работа с дженериками
+    func fetchGenericJSONData<T: Decodable>(pathURL: String, comletion: @escaping (T?, Error?) -> Void)
 }
 
 class NetworkDataFetcher: NetworkDataFetcherProtocol {
-    var networkService: NetworkService
-
-    static var shared = NetworkDataFetcher()
-    init(networkService: NetworkService = NetworkService()) {
+    
+    /// наши абстракции
+    var networkService: NetworkServiceProtocol
+    
+    init(networkService: NetworkServiceProtocol = NetworkService()) {
         self.networkService = networkService
     }
-
-    func fetchPaidGames(pathURL: String, comletion: @escaping (AppGroup?, Error?) -> Void) {
+    
+    func fetchGenericJSONData<T: Decodable>(pathURL: String, comletion: @escaping (T?, Error?) -> Void) {
+        //print("fetchGenericJSONData T: \(T.self)")
+        networkService.request(pathURL: pathURL) { [weak self] data, error in
+            guard let self else { return }
+            if let error {
+                comletion(nil, error)
+            } else if let data {
+                let (item, error) = self.decodeJSON(type: T.self, data: data)
+                comletion(item, error)
+            }
+        }
+    }
+    
+    func decodeJSON<T: Decodable>(type: T.Type, data: Data) -> (T?, Error?) {
+        do {
+            let decoder = JSONDecoder()
+            let decodedData = try decoder.decode(T.self, from: data)
+            return (decodedData, nil)
+        } catch {
+            return (nil, error)
+        }
+    }
+    
+    /*
+    func fetchPaidGames(pathURL: String, comletion: @escaping (AppGroup?, Error?) -> Void)  {
         networkService.request(pathURL: pathURL) { data, error in
             let decoder = JSONDecoder()
             guard let data else { return }
@@ -27,8 +57,8 @@ class NetworkDataFetcher: NetworkDataFetcherProtocol {
             comletion(appGroup, error)
         }
     }
-
-    func fetchFreeGames(pathURL: String, comletion: @escaping (AppGroup?, Error?) -> Void) {
+    
+    func fetchFreeGames(pathURL: String, comletion: @escaping (AppGroup?, Error?) -> Void)  {
         networkService.request(pathURL: pathURL) { data, error in
             let decoder = JSONDecoder()
             guard let data else { return }
@@ -36,8 +66,8 @@ class NetworkDataFetcher: NetworkDataFetcherProtocol {
             comletion(appGroup, error)
         }
     }
-
-    func fetchCountry(pathURL: String, comletion: @escaping ([Country]?, Error?) -> Void) {
+    
+    func fetchCountry(pathURL: String, comletion: @escaping ([Country]?, Error?) -> Void)  {
         networkService.request(pathURL: pathURL) { data, error in
             let decoder = JSONDecoder()
             guard let data else { return }
@@ -45,4 +75,5 @@ class NetworkDataFetcher: NetworkDataFetcherProtocol {
             comletion(countries, error)
         }
     }
+     */
 }

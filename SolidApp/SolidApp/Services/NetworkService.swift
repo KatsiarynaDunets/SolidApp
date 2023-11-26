@@ -7,7 +7,16 @@
 
 import Foundation
 
-final class NetworkService {
+/*
+ NetworkServiceProtocol - модуль нижнего уровня для NetworkDataFetcherProtocol (NetworkDataFetcher)
+ NetworkServiceProtocol - модуль нижнего уровня для NetworkDataFetcherProtocol (LocalDataFetcher)
+ */
+
+protocol NetworkServiceProtocol {
+    func request(pathURL: String, comletion: @escaping (Data?, Error?) -> Void)
+}
+
+final class NetworkService: NetworkServiceProtocol {
         
     func request(pathURL: String, comletion: @escaping (Data?, Error?) -> Void) {
         guard let url = URL(string: pathURL) else { return }
