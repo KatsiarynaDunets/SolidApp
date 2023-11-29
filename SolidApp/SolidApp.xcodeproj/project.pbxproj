@@ -26,6 +26,7 @@
 		523DF51E2B0EB49A00F312B8 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523DF51D2B0EB49A00F312B8 /* AppGroup.swift */; };
 		523DF5202B0EB56600F312B8 /* DataFetcherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523DF51F2B0EB56600F312B8 /* DataFetcherService.swift */; };
 		523DF5222B0EB58100F312B8 /* NetworkDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523DF5212B0EB58100F312B8 /* NetworkDataFetcher.swift */; };
+		523DF5242B13F85C00F312B8 /* LocalDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523DF5232B13F85C00F312B8 /* LocalDataFetcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		523DF51D2B0EB49A00F312B8 /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
 		523DF51F2B0EB56600F312B8 /* DataFetcherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcherService.swift; sourceTree = "<group>"; };
 		523DF5212B0EB58100F312B8 /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcher.swift; sourceTree = "<group>"; };
+		523DF5232B13F85C00F312B8 /* LocalDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataFetcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +202,7 @@
 				523DF51F2B0EB56600F312B8 /* DataFetcherService.swift */,
 				523DF5212B0EB58100F312B8 /* NetworkDataFetcher.swift */,
 				523DF5192B0EA94300F312B8 /* DataStoreService.swift */,
+				523DF5232B13F85C00F312B8 /* LocalDataFetcher.swift */,
 				523DF51B2B0EA96600F312B8 /* ValidateService.swift */,
 			);
 			path = Services;
@@ -345,6 +348,7 @@
 				523DF4D92B0EA53900F312B8 /* AppDelegate.swift in Sources */,
 				523DF5112B0EA5E700F312B8 /* Country.swift in Sources */,
 				523DF5152B0EA66400F312B8 /* BaseViewController.swift in Sources */,
+				523DF5242B13F85C00F312B8 /* LocalDataFetcher.swift in Sources */,
 				523DF51C2B0EA96600F312B8 /* ValidateService.swift in Sources */,
 				523DF4DB2B0EA53900F312B8 /* SceneDelegate.swift in Sources */,
 				523DF51A2B0EA94300F312B8 /* DataStoreService.swift in Sources */,
